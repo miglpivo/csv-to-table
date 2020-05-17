@@ -74,15 +74,15 @@ class TypeGuesser(object):
                 rowCounter += 1
 
                 if colCount is None:
-                    colCount = len(row)
+                    colCount = len(list(row))
                 else:
-                    if colCount != len(row):
+                    if colCount != len(list(row)):
                         raise Exception(
                             "Column count mismatch at row %d: (%d vs %d)" %
-                            (rowCounter, colCount, len(row)))
+                            (rowCounter, colCount, len(list(row))))
 
-                if rowCounter == 1 and self.hasHeader:
-                    self.columns = self.tidyColumns(row)
+                if (rowCounter == 1 and self.hasHeader):
+                    self.columns = list(self.tidyColumns(row))
                     if self.lowercaseHeader:
                         self.columns = [x.lower() for x in self.columns]
                     continue
@@ -260,7 +260,7 @@ class TypeGuesser(object):
                 return
 
         for row in self.fileSample:
-            self._currentTypes = [None] * len(row)
+            self._currentTypes = [None] * len(list(row))
 
             for i, field in enumerate(row):
                 self._currentTypes[i] = self.guessType(field)
@@ -288,7 +288,7 @@ class TypeGuesser(object):
         for i, column in enumerate(self.columns):
             nextLine = "\t" + column + " " + self.types[i]
 
-            if i < len(self.columns) - 1:
+            if i <= len(list(self.columns)):
                 nextLine += ","
 
             lines.append(nextLine)
