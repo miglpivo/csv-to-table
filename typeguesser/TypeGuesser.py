@@ -288,7 +288,7 @@ class TypeGuesser(object):
         for i, column in enumerate(self.columns):
             nextLine = "\t" + column + " " + self.types[i]
 
-            if i < len(list(self.columns)):
+            if i < len(list(self.columns)) - 1:
                 nextLine += ","
 
             lines.append(nextLine)
