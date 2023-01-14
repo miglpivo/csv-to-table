@@ -165,7 +165,7 @@ class TypeGuesser(object):
                 else:
                     return "bigint"
             else:
-                return "numeric"
+                return "decimal(10,2)"
         else:
             if self.isBool(s):
                 return "boolean"
