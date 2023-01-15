@@ -136,7 +136,7 @@ class TypeGuesser(object):
 
     @staticmethod
     def alterColumnName(name):
-        return re.sub('[-\s]', '_', name)
+        return name
 
 
     def tidyColumns(self, columns):
@@ -286,7 +286,7 @@ class TypeGuesser(object):
         lines = ["CREATE TABLE " + self.tableName + " ("]
 
         for i, column in enumerate(self.columns):
-            nextLine = "\t" + column + " " + self.types[i]
+            nextLine = "\t`" + column + "` " + self.types[i]
 
             if i < len(list(self.columns)) - 1:
                 nextLine += ","
