@@ -67,7 +67,7 @@ class TypeGuesser(object):
         colCount = None
         rowCounter = 0
 
-        with open(self.file) as f:
+        with open(self.file, encoding="utf-8") as f:
             reader = csv.reader(f, delimiter=self.delimiter,
                                 quotechar=self.quoteChar)
             for row in reader:
